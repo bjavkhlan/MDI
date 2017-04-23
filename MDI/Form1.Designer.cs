@@ -29,23 +29,37 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonlogin = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.labelUser = new System.Windows.Forms.Label();
             this.labelPass = new System.Windows.Forms.Label();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
+            this.labelUser = new System.Windows.Forms.Label();
+            this.textResult = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textResult);
+            this.panel1.Controls.Add(this.buttonlogin);
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(284, 261);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonlogin
+            // 
+            this.buttonlogin.Location = new System.Drawing.Point(112, 165);
+            this.buttonlogin.Name = "buttonlogin";
+            this.buttonlogin.Size = new System.Drawing.Size(75, 23);
+            this.buttonlogin.TabIndex = 1;
+            this.buttonlogin.Text = "Login";
+            this.buttonlogin.UseVisualStyleBackColor = true;
+            this.buttonlogin.Click += new System.EventHandler(this.buttonlogin_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -58,28 +72,18 @@
             this.tableLayoutPanel1.Controls.Add(this.labelUser, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(50, 50);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 109);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // labelUser
-            // 
-            this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(3, 27);
-            this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(55, 13);
-            this.labelUser.TabIndex = 0;
-            this.labelUser.Text = "Username";
-            this.labelUser.Click += new System.EventHandler(this.label1_Click);
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // labelPass
             // 
             this.labelPass.AutoSize = true;
-            this.labelPass.Location = new System.Drawing.Point(3, 54);
+            this.labelPass.Location = new System.Drawing.Point(3, 72);
             this.labelPass.Name = "labelPass";
             this.labelPass.Size = new System.Drawing.Size(53, 13);
             this.labelPass.TabIndex = 1;
@@ -87,18 +91,35 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(103, 30);
+            this.textBoxUser.Location = new System.Drawing.Point(103, 39);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(94, 20);
             this.textBoxUser.TabIndex = 2;
             // 
             // textBoxPass
             // 
-            this.textBoxPass.Location = new System.Drawing.Point(103, 57);
+            this.textBoxPass.Location = new System.Drawing.Point(103, 75);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
             this.textBoxPass.Size = new System.Drawing.Size(94, 20);
             this.textBoxPass.TabIndex = 3;
+            // 
+            // labelUser
+            // 
+            this.labelUser.AutoSize = true;
+            this.labelUser.Location = new System.Drawing.Point(3, 36);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(55, 13);
+            this.labelUser.TabIndex = 0;
+            this.labelUser.Text = "Username";
+            this.labelUser.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // textResult
+            // 
+            this.textResult.Location = new System.Drawing.Point(7, 219);
+            this.textResult.Name = "textResult";
+            this.textResult.Size = new System.Drawing.Size(100, 20);
+            this.textResult.TabIndex = 2;
             // 
             // Form1
             // 
@@ -110,6 +131,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -124,6 +146,8 @@
         private System.Windows.Forms.Label labelPass;
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxPass;
+        private System.Windows.Forms.Button buttonlogin;
+        private System.Windows.Forms.TextBox textResult;
     }
 }
 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MDI
 {
-    public partial class Form2 : Form
+    public partial class FormManager : Form
     {
-        public Form2()
+        public FormManager()
         {
             InitializeComponent();
         }

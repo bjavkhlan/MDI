@@ -1,6 +1,6 @@
 ﻿namespace MDI
 {
-    partial class Form2
+    partial class FormManager
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FormManager
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form2";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "FormManager";
+            this.Text = "Manager Form";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿namespace MDI
 {
-    partial class FormLogin
+    partial class FormChild
     {
         /// <summary>
         /// Required designer variable.
@@ -46,15 +46,15 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(313, 259);
+            this.panel1.Size = new System.Drawing.Size(484, 461);
             this.panel1.TabIndex = 0;
             // 
             // buttonlogin
             // 
-            this.buttonlogin.Location = new System.Drawing.Point(112, 165);
+            this.buttonlogin.Location = new System.Drawing.Point(196, 211);
             this.buttonlogin.Name = "buttonlogin";
             this.buttonlogin.Size = new System.Drawing.Size(75, 23);
-            this.buttonlogin.TabIndex = 1;
+            this.buttonlogin.TabIndex = 3;
             this.buttonlogin.Text = "Login";
             this.buttonlogin.UseVisualStyleBackColor = true;
             this.buttonlogin.Click += new System.EventHandler(this.buttonlogin_Click);
@@ -68,14 +68,14 @@
             this.tableLayoutPanel1.Controls.Add(this.textBoxUser, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.textBoxPass, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelUser, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(50, 50);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(135, 96);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 109);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
             // labelPass
             // 
@@ -110,14 +110,15 @@
             this.labelUser.TabIndex = 0;
             this.labelUser.Text = "Username";
             // 
-            // FormLogin
+            // FormChild
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 259);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.panel1);
-            this.Name = "FormLogin";
-            this.Text = "Login Form";
+            this.Name = "FormChild";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FormChild";
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -128,12 +129,11 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonlogin;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.Label labelPass;
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.TextBox textBoxPass;
-        private System.Windows.Forms.Button buttonlogin;
+        private System.Windows.Forms.Label labelUser;
     }
 }
-

@@ -10,16 +10,15 @@ using System.Windows.Forms;
 
 namespace MDI
 {
-    public partial class FormAdmin : Form
+    public partial class FormMain : Form
     {
-        public FormAdmin()
+        public FormMain()
         {
             InitializeComponent();
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
+            FormChild f = new FormChild();
+            f.MdiParent = this;
+            f.Show();
+            f.WindowState = FormWindowState.Maximized;
         }
     }
 }

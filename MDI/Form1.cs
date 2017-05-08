@@ -18,13 +18,14 @@ namespace MDI
         //private MySqlConnection conn;
         private FormAdmin formAdmin;
         private FormManager formManager;
+        String myConnectionString;
         public FormLogin()
         {
             InitializeComponent();
             //    String myConnectionString = "server=127.0.0.1;uid=root;" + "pwd=1234;database=mdi;";
             //    conn = new MySqlConnection();
             conn = new SqlConnection();
-            String myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
+            myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
             conn.ConnectionString = myConnectionString;
 
             
@@ -37,10 +38,15 @@ namespace MDI
 
             String sql = "select passwrd from users where users.username='"+textBoxUser.Text+"';";
 
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            object result = cmd.ExecuteScalar();
-            conn.Close();
+
+            using (SqlConnection conn1 = new SqlConnection())
+            {
+                conn1.ConnectionString = myConnectionString;
+                conn1.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                object result = cmd.ExecuteScalar();
+                conn1.Close();
+            }
 
 
             if (result != null && result.ToString().Equals(textBoxPass.Text) )

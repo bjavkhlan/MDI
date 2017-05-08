@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace MDI
 {
-    public partial class FormAdmin : Form
+    public partial class FormChild : Form
     {
-        public FormAdmin()
+        public FormChild()
         {
             InitializeComponent();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void buttonlogin_Click(object sender, EventArgs e)
         {
 
         }

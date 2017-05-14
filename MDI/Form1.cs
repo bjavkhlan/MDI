@@ -14,46 +14,67 @@ namespace MDI
 {
     public partial class FormLogin : Form
     {
-        private SqlConnection conn;
         //private MySqlConnection conn;
-        private FormAdmin formAdmin;
-        private FormManager formManager;
+        private String myConnectionString;
         public FormLogin()
         {
             InitializeComponent();
             //    String myConnectionString = "server=127.0.0.1;uid=root;" + "pwd=1234;database=mdi;";
             //    conn = new MySqlConnection();
-            conn = new SqlConnection();
-            String myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
-            conn.ConnectionString = myConnectionString;
-
-            
+            myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
         }
         
-        
+        private void checkPass()
+        {
+            String sql = "select passwrd from users where users.username='" + textBoxUser.Text + "';";
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = myConnectionString;
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                object result = cmd.ExecuteScalar();
+                conn.Close();
+                if (result != null && result.ToString().Equals(textBoxPass.Text))
+                {
+                    FormMain.username = textBoxUser.Text;
+                    sql = "select groups from users where users.username='" + textBoxUser.Text + "';";
+                    conn.Open();
+                    cmd = new SqlCommand(sql, conn);
+                    result = cmd.ExecuteScalar();
+                    conn.Close();
+                    FormMain.group = result.ToString();
+                    this.Close();
+                }
+                else
+                {
+                    labelResult.Text = "Wrong username or password! Try again";
+                    textBoxPass.Text = "";
+                }
+            }
+        }
+
         private void buttonlogin_Click(object sender, EventArgs e)
         {
-           
-
-            String sql = "select passwrd from users where users.username='"+textBoxUser.Text+"';";
-
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            object result = cmd.ExecuteScalar();
-            conn.Close();
-
-
-            if (result != null && result.ToString().Equals(textBoxPass.Text) )
-            {
-                formAdmin = new FormAdmin();
-                formAdmin.Show();
-                this.Hide();
-                MessageBox.Show(result.ToString());
-            }
-
+            checkPass();  
         }
 
-        private void groupsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void textBoxPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                checkPass();
+            }
+        }
+
+        private void textBoxUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                checkPass();
+            }
+        }
+
+        private void labelResult_Click(object sender, EventArgs e)
         {
 
         }

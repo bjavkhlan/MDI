@@ -16,5 +16,30 @@ namespace MDI
         {
             InitializeComponent();
         }
+
+        private void usersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.usersBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.mdiDataSet);
+
+        }
+
+        private void FormManager_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'mdiDataSet.users' table. You can move, or remove it, as needed.
+            this.usersTableAdapter.Fill(this.mdiDataSet.users);
+            // TODO: This line of code loads data into the 'mdiDataSet.users' table. You can move, or remove it, as needed.
+            this.usersTableAdapter.Fill(this.mdiDataSet.users);
+
+        }
+
+        private void usersBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.usersBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.mdiDataSet);
+
+        }
     }
 }

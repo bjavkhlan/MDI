@@ -15,6 +15,7 @@ namespace MDI
         public static string username;
         public static string group;
         private FormLogin formLogin;
+        private FormUser formUser;
         private FormAdmin formAdmin;
         private FormManager formManager;
         public FormMain()
@@ -40,7 +41,9 @@ namespace MDI
                 }
                 else
                 {
-                   
+                    formUser = new FormUser();
+                    formUser.MdiParent = this;
+                    formUser.Show();
                 }
 
             }

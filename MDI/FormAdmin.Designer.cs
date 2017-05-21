@@ -245,7 +245,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(113, 3);
+            this.textBox6.Location = new System.Drawing.Point(114, 3);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 20);
             this.textBox6.TabIndex = 1;

@@ -31,6 +31,7 @@ namespace MDI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             String sql = "insert into users values('" + textBox1.Text + "','" + textBox2.Text
                 + "','" + textBox3.Text + "',NULL,'" + textBox4.Text + "','" + textBox5.Text + "');";
             String myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
@@ -39,7 +40,12 @@ namespace MDI
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                int result = cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
+                /*
+                sql = "insert into images values('" + textBox1.Text + "', 'C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\image\\default.jpg');";
+                cmd = new SqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                */            
                 conn.Close();
              //   MessageBox.Show(result.ToString());
             }

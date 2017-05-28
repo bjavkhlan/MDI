@@ -28,351 +28,248 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormManager));
-            System.Windows.Forms.Label usernameLabel;
-            System.Windows.Forms.Label fnameLabel;
-            System.Windows.Forms.Label lnameLabel;
-            System.Windows.Forms.Label dateofbirthLabel;
-            System.Windows.Forms.Label passwrdLabel;
-            System.Windows.Forms.Label groupsLabel;
-            this.mdiDataSet = new MDI.mdiDataSet();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersTableAdapter = new MDI.mdiDataSetTableAdapters.usersTableAdapter();
-            this.tableAdapterManager = new MDI.mdiDataSetTableAdapters.TableAdapterManager();
-            this.usersBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.usersBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.usernameTextBox = new System.Windows.Forms.TextBox();
-            this.fnameTextBox = new System.Windows.Forms.TextBox();
-            this.lnameTextBox = new System.Windows.Forms.TextBox();
-            this.dateofbirthDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.passwrdTextBox = new System.Windows.Forms.TextBox();
-            this.groupsTextBox = new System.Windows.Forms.TextBox();
-            usernameLabel = new System.Windows.Forms.Label();
-            fnameLabel = new System.Windows.Forms.Label();
-            lnameLabel = new System.Windows.Forms.Label();
-            dateofbirthLabel = new System.Windows.Forms.Label();
-            passwrdLabel = new System.Windows.Forms.Label();
-            groupsLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.mdiDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingNavigator)).BeginInit();
-            this.usersBindingNavigator.SuspendLayout();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // mdiDataSet
+            // tabControl1
             // 
-            this.mdiDataSet.DataSetName = "mdiDataSet";
-            this.mdiDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(446, 317);
+            this.tabControl1.TabIndex = 0;
             // 
-            // usersBindingSource
+            // tabPage1
             // 
-            this.usersBindingSource.DataMember = "users";
-            this.usersBindingSource.DataSource = this.mdiDataSet;
+            this.tabPage1.Controls.Add(this.flowLayoutPanel1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(438, 291);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "UsersList";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // usersTableAdapter
+            // tabPage2
             // 
-            this.usersTableAdapter.ClearBeforeFill = true;
+            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(438, 291);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "EditInfo";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tableAdapterManager
+            // panel1
             // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.groupsTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = MDI.mdiDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.usersTableAdapter = this.usersTableAdapter;
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(432, 285);
+            this.panel1.TabIndex = 1;
             // 
-            // usersBindingNavigator
+            // button2
             // 
-            this.usersBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.usersBindingNavigator.BindingSource = this.usersBindingSource;
-            this.usersBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.usersBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.usersBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.usersBindingNavigatorSaveItem});
-            this.usersBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.usersBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.usersBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.usersBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.usersBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.usersBindingNavigator.Name = "usersBindingNavigator";
-            this.usersBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.usersBindingNavigator.Size = new System.Drawing.Size(446, 25);
-            this.usersBindingNavigator.TabIndex = 0;
-            this.usersBindingNavigator.Text = "bindingNavigator1";
+            this.button2.Location = new System.Drawing.Point(240, 236);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // bindingNavigatorMoveFirstItem
+            // tableLayoutPanel1
             // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.23423F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.76577F));
+            this.tableLayoutPanel1.Controls.Add(this.textBox5, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBox4, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textBox3, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 79);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 127);
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // bindingNavigatorMovePreviousItem
+            // textBox5
             // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            this.textBox5.Location = new System.Drawing.Point(116, 103);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.TabIndex = 9;
             // 
-            // bindingNavigatorSeparator
+            // textBox4
             // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            this.textBox4.Location = new System.Drawing.Point(116, 78);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.PasswordChar = '*';
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 8;
             // 
-            // bindingNavigatorPositionItem
+            // textBox3
             // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            this.textBox3.Location = new System.Drawing.Point(116, 53);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 7;
             // 
-            // bindingNavigatorCountItem
+            // label3
             // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 15);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 25);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "firstname";
             // 
-            // bindingNavigatorSeparator1
+            // label4
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 6);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "lastname";
             // 
-            // bindingNavigatorMoveNextItem
+            // label5
             // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 20);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "password";
             // 
-            // bindingNavigatorMoveLastItem
+            // label6
             // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 20);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 100);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "group";
             // 
-            // bindingNavigatorSeparator2
+            // textBox2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 6);
+            this.textBox2.Location = new System.Drawing.Point(116, 28);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 6;
             // 
-            // bindingNavigatorAddNewItem
+            // button1
             // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.button1.Location = new System.Drawing.Point(340, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // bindingNavigatorDeleteItem
+            // textBox1
             // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 20);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.textBox1.Location = new System.Drawing.Point(217, 24);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 1;
             // 
-            // usersBindingNavigatorSaveItem
+            // label1
             // 
-            this.usersBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.usersBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("usersBindingNavigatorSaveItem.Image")));
-            this.usersBindingNavigatorSaveItem.Name = "usersBindingNavigatorSaveItem";
-            this.usersBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 23);
-            this.usersBindingNavigatorSaveItem.Text = "Save Data";
-            this.usersBindingNavigatorSaveItem.Click += new System.EventHandler(this.usersBindingNavigatorSaveItem_Click_1);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(156, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Username";
             // 
-            // usernameLabel
+            // flowLayoutPanel1
             // 
-            usernameLabel.AutoSize = true;
-            usernameLabel.Location = new System.Drawing.Point(13, 47);
-            usernameLabel.Name = "usernameLabel";
-            usernameLabel.Size = new System.Drawing.Size(56, 13);
-            usernameLabel.TabIndex = 1;
-            usernameLabel.Text = "username:";
-            // 
-            // usernameTextBox
-            // 
-            this.usernameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "username", true));
-            this.usernameTextBox.Location = new System.Drawing.Point(79, 44);
-            this.usernameTextBox.Name = "usernameTextBox";
-            this.usernameTextBox.Size = new System.Drawing.Size(200, 20);
-            this.usernameTextBox.TabIndex = 2;
-            // 
-            // fnameLabel
-            // 
-            fnameLabel.AutoSize = true;
-            fnameLabel.Location = new System.Drawing.Point(13, 73);
-            fnameLabel.Name = "fnameLabel";
-            fnameLabel.Size = new System.Drawing.Size(39, 13);
-            fnameLabel.TabIndex = 3;
-            fnameLabel.Text = "fname:";
-            // 
-            // fnameTextBox
-            // 
-            this.fnameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "fname", true));
-            this.fnameTextBox.Location = new System.Drawing.Point(79, 70);
-            this.fnameTextBox.Name = "fnameTextBox";
-            this.fnameTextBox.Size = new System.Drawing.Size(200, 20);
-            this.fnameTextBox.TabIndex = 4;
-            // 
-            // lnameLabel
-            // 
-            lnameLabel.AutoSize = true;
-            lnameLabel.Location = new System.Drawing.Point(13, 99);
-            lnameLabel.Name = "lnameLabel";
-            lnameLabel.Size = new System.Drawing.Size(38, 13);
-            lnameLabel.TabIndex = 5;
-            lnameLabel.Text = "lname:";
-            // 
-            // lnameTextBox
-            // 
-            this.lnameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "lname", true));
-            this.lnameTextBox.Location = new System.Drawing.Point(79, 96);
-            this.lnameTextBox.Name = "lnameTextBox";
-            this.lnameTextBox.Size = new System.Drawing.Size(200, 20);
-            this.lnameTextBox.TabIndex = 6;
-            // 
-            // dateofbirthLabel
-            // 
-            dateofbirthLabel.AutoSize = true;
-            dateofbirthLabel.Location = new System.Drawing.Point(13, 126);
-            dateofbirthLabel.Name = "dateofbirthLabel";
-            dateofbirthLabel.Size = new System.Drawing.Size(60, 13);
-            dateofbirthLabel.TabIndex = 7;
-            dateofbirthLabel.Text = "dateofbirth:";
-            // 
-            // dateofbirthDateTimePicker
-            // 
-            this.dateofbirthDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.usersBindingSource, "dateofbirth", true));
-            this.dateofbirthDateTimePicker.Location = new System.Drawing.Point(79, 122);
-            this.dateofbirthDateTimePicker.Name = "dateofbirthDateTimePicker";
-            this.dateofbirthDateTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.dateofbirthDateTimePicker.TabIndex = 8;
-            // 
-            // passwrdLabel
-            // 
-            passwrdLabel.AutoSize = true;
-            passwrdLabel.Location = new System.Drawing.Point(13, 151);
-            passwrdLabel.Name = "passwrdLabel";
-            passwrdLabel.Size = new System.Drawing.Size(49, 13);
-            passwrdLabel.TabIndex = 9;
-            passwrdLabel.Text = "passwrd:";
-            // 
-            // passwrdTextBox
-            // 
-            this.passwrdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "passwrd", true));
-            this.passwrdTextBox.Location = new System.Drawing.Point(79, 148);
-            this.passwrdTextBox.Name = "passwrdTextBox";
-            this.passwrdTextBox.Size = new System.Drawing.Size(200, 20);
-            this.passwrdTextBox.TabIndex = 10;
-            // 
-            // groupsLabel
-            // 
-            groupsLabel.AutoSize = true;
-            groupsLabel.Location = new System.Drawing.Point(13, 177);
-            groupsLabel.Name = "groupsLabel";
-            groupsLabel.Size = new System.Drawing.Size(42, 13);
-            groupsLabel.TabIndex = 11;
-            groupsLabel.Text = "groups:";
-            // 
-            // groupsTextBox
-            // 
-            this.groupsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "groups", true));
-            this.groupsTextBox.Location = new System.Drawing.Point(79, 174);
-            this.groupsTextBox.Name = "groupsTextBox";
-            this.groupsTextBox.Size = new System.Drawing.Size(200, 20);
-            this.groupsTextBox.TabIndex = 12;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 285);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // FormManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 317);
-            this.Controls.Add(usernameLabel);
-            this.Controls.Add(this.usernameTextBox);
-            this.Controls.Add(fnameLabel);
-            this.Controls.Add(this.fnameTextBox);
-            this.Controls.Add(lnameLabel);
-            this.Controls.Add(this.lnameTextBox);
-            this.Controls.Add(dateofbirthLabel);
-            this.Controls.Add(this.dateofbirthDateTimePicker);
-            this.Controls.Add(passwrdLabel);
-            this.Controls.Add(this.passwrdTextBox);
-            this.Controls.Add(groupsLabel);
-            this.Controls.Add(this.groupsTextBox);
-            this.Controls.Add(this.usersBindingNavigator);
+            this.Controls.Add(this.tabControl1);
             this.Name = "FormManager";
             this.Text = "Manager Form";
-            this.Load += new System.EventHandler(this.FormManager_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mdiDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersBindingNavigator)).EndInit();
-            this.usersBindingNavigator.ResumeLayout(false);
-            this.usersBindingNavigator.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private mdiDataSet mdiDataSet;
-        private System.Windows.Forms.BindingSource usersBindingSource;
-        private mdiDataSetTableAdapters.usersTableAdapter usersTableAdapter;
-        private mdiDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingNavigator usersBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton usersBindingNavigatorSaveItem;
-        private System.Windows.Forms.TextBox usernameTextBox;
-        private System.Windows.Forms.TextBox fnameTextBox;
-        private System.Windows.Forms.TextBox lnameTextBox;
-        private System.Windows.Forms.DateTimePicker dateofbirthDateTimePicker;
-        private System.Windows.Forms.TextBox passwrdTextBox;
-        private System.Windows.Forms.TextBox groupsTextBox;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

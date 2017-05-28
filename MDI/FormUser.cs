@@ -8,20 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Threading;
+using System.Net;
+using System.Net.Sockets;
+
 
 namespace MDI
 {
+
     public partial class FormUser : Form
     {
 
-        TextBox[] salary= new TextBox[12];
-        String myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
-        String imagePath = "C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\image\\";
+        private TextBox[] salary= new TextBox[12];
+        private String myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
+        private String imagePath = "C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\image\\";
+     //   String[] inChatIp;
+      //  int inChat = 0;
+        private const int udpPort = 12345;
+        private const int tcpPort = 23456;
         public FormUser()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
-
+         //   this.WindowState = FormWindowState.Maximized;
+           
             salary[0] = textBox1;
             salary[1] = textBox2;
             salary[2] = textBox3;
@@ -64,11 +73,127 @@ namespace MDI
                 }
                 conn.Close();
             }
+
+            RefreshChatList();
+
+            Thread listener = new Thread(StartListening);
+            listener.IsBackground = true;
+            listener.Start();
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void StartListening() {
+            TcpListener listener = new TcpListener(IPAddress.Any, tcpPort);
+            try
+            {
+                listener.Start();
+                while (true)
+                {
+                    TcpClient handler = listener.AcceptTcpClient();
+                   // Socket handler = listener.AcceptSocket();
+                    FormChat fc = new FormChat(handler);
+                    fc.MdiParent = this.MdiParent;
+                    fc.Invoke((MethodInvoker)(() => fc.Show()));
+                }
+            }
+            catch (Exception e) {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        private void sendBroadcast(object sender, EventArgs e) {
+            Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            IPAddress broadcast = IPAddress.Parse("192.168.1.255");
+            byte[] sendbuf = Encoding.ASCII.GetBytes("HiChat");
+            IPEndPoint ep = new IPEndPoint(broadcast, udpPort);
+            s.SendTo(sendbuf, ep);
+            MessageBox.Show("Broadcast Message Sent!");
+        }
+
+        private void RefreshChatList() {
+            flowLayoutPanel2.Controls.Clear();
+            Label header = new Label();
+            header.Text = "Online Users:";
+            header.ForeColor = Color.Green;
+            header.Click += new EventHandler(sendBroadcast);
+            flowLayoutPanel2.Controls.Add(header);
+
+
+            
+            Thread th = new Thread(() =>
+            {
+
+                bool done = false;
+
+                UdpClient listener = new UdpClient(udpPort);
+                IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, udpPort);
+                try
+                {
+                    while (!done)
+                    {
+                        byte[] bytes = listener.Receive(ref groupEP);
+                        if (bytes.ToString() == "HiChat")
+                        {
+                            Socket soc = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                            byte[] msg = Encoding.ASCII.GetBytes(FormMain.username);
+                            soc.SendTo(msg, groupEP);
+                        }
+                        else
+                        {
+                           // inChatIp[inChat] = groupEP.Address.ToString();
+                            Label label = new Label();
+                            label.Text = bytes.ToString() + ":" + groupEP.Address.ToString();
+                            label.Click += new EventHandler(Chat);
+                            flowLayoutPanel2.Controls.Add(label);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                finally
+                {
+                    listener.Close();
+                }
+            });
+
+            th.IsBackground = true;
+            th.Start();
+
+            Label l = new Label();
+            l.Text = "HERE";
+            l.Click += new EventHandler(Chat);
+
+            flowLayoutPanel2.Controls.Add(l);
+            Label l1 = new Label();
+            l1.Text = "THERE";
+            l1.Click += new EventHandler(Chat);
+            flowLayoutPanel2.Controls.Add(l1);
+            
+
+        }
+
+        private void Chat(object sender, EventArgs e) {
+            MessageBox.Show(((Label)sender).Text);
+            string[] str = (((Label)sender).Text).Split(':');
+            //Socket soc = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            TcpClient client = new TcpClient();
+            try
+            {
+                client.Connect(IPAddress.Parse(str[1]), tcpPort);
+               // IPEndPoint EP = new IPEndPoint( IPAddress.Parse(str[1]), tcpPort );
+              //  soc.Bind(EP);
+                FormChat chat = new FormChat(client);
+                chat.MdiParent = this.MdiParent;
+                chat.Show();
+
+            } catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+         }
+
+        private void DrawBar(object sender, Graphics G) 
         {
-            Graphics G = e.Graphics;
             int MH = ((PictureBox)sender).Height;
             int MW = ((PictureBox)sender).Width;
             int H = MH / 12;
@@ -77,14 +202,25 @@ namespace MDI
             Pen border = new Pen(Color.Black);
             G.DrawRectangle(border, W, 0, MW-W-1, MH-H);
             Font font = new Font("Arial", 8);
-            int BaseH = 20+(int)(G.MeasureString((100).ToString(), font).Height);
+            int BaseH = 20 + (int)(G.MeasureString((100).ToString(), font).Height);
             for (int i = 0; i <= 10; i ++)
-                G.DrawString((i * 100).ToString(), font, new SolidBrush(Color.Black), new Point(W-(int)(G.MeasureString((i*100).ToString(), font).Width), MH-BaseH-i * H));
+                G.DrawString((i* 100).ToString(), font, new SolidBrush(Color.Black), new Point(W-(int)(G.MeasureString((i*100).ToString(), font).Width), MH-BaseH-i* H));
             
             for (int i = 1; i <= 12; i++)
                 G.DrawString(i.ToString(), font, new SolidBrush(Color.Black), new Point(W*(i+1), MH-H));
-            for (int i = 0; i < 12; i++)
-                G.DrawLine(pen, W*(i+2)+5, MH-H-(H*(int.Parse(salary[i].Text)))/100, W*(i+2)+5, MH-H);
+            for (int i = 0; i< 12; i++)
+                G.DrawLine(pen, W*(i+2)+5, MH-H-(H*(int.Parse(salary[i].Text)))/100, W* (i+2)+5, MH-H);
+        
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+
+            Graphics G = e.Graphics;
+            Thread th = new Thread(()=>DrawBar(sender, G));
+            th.Start();
+            th.Join();
+           
         }
         
         private void ButtonSave_Click(object sender, EventArgs e)

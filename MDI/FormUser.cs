@@ -91,9 +91,10 @@ namespace MDI
                 {
                     TcpClient handler = listener.AcceptTcpClient();
                    // Socket handler = listener.AcceptSocket();
-                    FormChat fc = new FormChat(handler);
-                    fc.MdiParent = this.MdiParent;
-                    fc.Invoke((MethodInvoker)(() => fc.Show()));
+                    FormChat chat = new FormChat(handler);
+                    //chat.MdiParent = this.MdiParent;
+                    chat.Show();
+                    //chat.Invoke((MethodInvoker)(()=>chat.Show()));
                 }
             }
             catch (Exception e) {
@@ -111,7 +112,7 @@ namespace MDI
         }
 
         private void RefreshChatList() {
-            flowLayoutPanel2.Controls.Clear();
+          //  flowLayoutPanel2.Controls.Clear();
             Label header = new Label();
             header.Text = "Online Users:";
             header.ForeColor = Color.Green;
@@ -133,21 +134,24 @@ namespace MDI
                     {
                         byte[] bytes = listener.Receive(ref groupEP);
                         string received = Encoding.Default.GetString(bytes);
-                        MessageBox.Show(received);
+                   //     MessageBox.Show(received);
                         if ( received == "HiChat")
                         {
-
+                            //MessageBox.Show("Here");
                             Socket soc = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                             byte[] msg = Encoding.ASCII.GetBytes(FormMain.username);
-                            soc.SendTo(msg, groupEP);
+                            soc.SendTo(msg, new IPEndPoint(groupEP.Address, udpPort));
+                            //soc.SendTo(msg, new IPEndPoint(IPAddress.Parse("192.168.1.255"), udpPort));
                         }
                         else
                         {
+                            //MessageBox.Show( received );
                            // inChatIp[inChat] = groupEP.Address.ToString();
                             Label label = new Label();
                             label.Text = received + ":" + groupEP.Address.ToString();
                             label.Click += new EventHandler(Chat);
-                            flowLayoutPanel2.Controls.Add(label);
+                          //  MessageBox.Show(label.Text);
+                            flowLayoutPanel2.Invoke((MethodInvoker)(()=> flowLayoutPanel2.Controls.Add(label)));
                         }
                     }
                 }
@@ -167,8 +171,8 @@ namespace MDI
             Label l = new Label();
             l.Text = "HERE";
             l.Click += new EventHandler(Chat);
-
             flowLayoutPanel2.Controls.Add(l);
+
             Label l1 = new Label();
             l1.Text = "THERE";
             l1.Click += new EventHandler(Chat);
@@ -178,12 +182,13 @@ namespace MDI
         }
 
         private void Chat(object sender, EventArgs e) {
-            MessageBox.Show(((Label)sender).Text);
+            //MessageBox.Show(((Label)sender).Text);
             string[] str = (((Label)sender).Text).Split(':');
             //Socket soc = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             TcpClient client = new TcpClient();
             try
             {
+              //  MessageBox.Show(str[1]);
                 client.Connect(IPAddress.Parse(str[1]), tcpPort);
                // IPEndPoint EP = new IPEndPoint( IPAddress.Parse(str[1]), tcpPort );
               //  soc.Bind(EP);

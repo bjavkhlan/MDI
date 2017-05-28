@@ -28,23 +28,29 @@ namespace MDI
             Thread th = new Thread(getMessage);
             th.IsBackground = true;
             th.Start();
+           // getMessage();
         }
 
         private void getMessage() {
             while (true) {
                 serverStream = client.GetStream();
-                int buffSize = 0;
+                int buffSize = 1024;
                 byte[] inStream = new byte[10025];
-                buffSize = client.ReceiveBufferSize;
+               // buffSize = client.ReceiveBufferSize;
+                //MessageBox.Show(buffSize.ToString());
                 serverStream.Read(inStream, 0, buffSize);
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-                textBox1.Text += returndata;
+                richTextBox1.Text += returndata;
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(textBox1.Text + '\n');
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(FormMain.username+": "+textBox1.Text + '\n');
+            
+            richTextBox1.Text += FormMain.username + ": " + textBox1.Text + '\n';
+            textBox1.Text = "";
+
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
         }

@@ -27,8 +27,7 @@ namespace MDI
 
             Thread th = new Thread(getMessage);
             th.IsBackground = true;
-           // th.Start();
-           // getMessage();
+            th.Start();
         }
 
         private void getMessage() {
@@ -40,7 +39,7 @@ namespace MDI
                 //MessageBox.Show(buffSize.ToString());
                 serverStream.Read(inStream, 0, buffSize);
                 string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-                richTextBox1.Text += returndata;
+                richTextBox1.Text += "    "+returndata;
             }
         }
 

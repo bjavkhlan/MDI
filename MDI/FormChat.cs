@@ -27,13 +27,13 @@ namespace MDI
 
             Thread th = new Thread(getMessage);
             th.IsBackground = true;
-            th.Start();
+           // th.Start();
            // getMessage();
         }
 
         private void getMessage() {
             while (true) {
-                serverStream = client.GetStream();
+               // serverStream = client.GetStream();
                 int buffSize = 1024;
                 byte[] inStream = new byte[10025];
                // buffSize = client.ReceiveBufferSize;

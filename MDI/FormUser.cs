@@ -92,8 +92,12 @@ namespace MDI
                     TcpClient handler = listener.AcceptTcpClient();
                    // Socket handler = listener.AcceptSocket();
                     FormChat chat = new FormChat(handler);
-                    //chat.MdiParent = this.MdiParent;
-                    chat.Show();
+
+
+                    this.MdiParent.Invoke((MethodInvoker)(()=> {
+                        chat.MdiParent = this.MdiParent;
+                        chat.Show();
+                    }));
                     //chat.Invoke((MethodInvoker)(()=>chat.Show()));
                 }
             }
@@ -167,18 +171,7 @@ namespace MDI
 
             th.IsBackground = true;
             th.Start();
-
-            Label l = new Label();
-            l.Text = "HERE";
-            l.Click += new EventHandler(Chat);
-            flowLayoutPanel2.Controls.Add(l);
-
-            Label l1 = new Label();
-            l1.Text = "THERE";
-            l1.Click += new EventHandler(Chat);
-            flowLayoutPanel2.Controls.Add(l1);
             
-
         }
 
         private void Chat(object sender, EventArgs e) {

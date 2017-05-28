@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 
 
 namespace MDI
@@ -122,17 +123,20 @@ namespace MDI
             Thread th = new Thread(() =>
             {
 
-                bool done = false;
+               // bool done = false;
 
                 UdpClient listener = new UdpClient(udpPort);
                 IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, udpPort);
                 try
                 {
-                    while (!done)
+                    while (true)
                     {
                         byte[] bytes = listener.Receive(ref groupEP);
-                        if (bytes.ToString() == "HiChat")
+                        string received = Encoding.Default.GetString(bytes);
+                        MessageBox.Show(received);
+                        if ( received == "HiChat")
                         {
+
                             Socket soc = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                             byte[] msg = Encoding.ASCII.GetBytes(FormMain.username);
                             soc.SendTo(msg, groupEP);
@@ -141,7 +145,7 @@ namespace MDI
                         {
                            // inChatIp[inChat] = groupEP.Address.ToString();
                             Label label = new Label();
-                            label.Text = bytes.ToString() + ":" + groupEP.Address.ToString();
+                            label.Text = received + ":" + groupEP.Address.ToString();
                             label.Click += new EventHandler(Chat);
                             flowLayoutPanel2.Controls.Add(label);
                         }

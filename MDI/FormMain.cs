@@ -24,6 +24,10 @@ namespace MDI
             username = null;
             formLogin = new FormLogin();
             //formLogin.MdiParent = this;
+            StartLogin();
+        }
+
+        private void StartLogin() {
             formLogin.ShowDialog();
             if (username != null)
             {
@@ -52,6 +56,14 @@ namespace MDI
         private void FormMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(formUser != null) formUser.Close();
+            if (formAdmin != null) formAdmin.Close();
+            if (formManager != null) formManager.Close();
+            StartLogin();
         }
     }
 }

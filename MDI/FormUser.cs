@@ -20,18 +20,19 @@ namespace MDI
     public partial class FormUser : Form
     {
 
-        private TextBox[] salary= new TextBox[12];
+        private TextBox[] salary = new TextBox[12];
+        private int[] sal = new int[12];
         private String myConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\mdi.mdf; Integrated Security = True; Connect Timeout = 30";
         private String imagePath = "C:\\Users\\Jagaa\\documents\\visual studio 2017\\Projects\\MDI\\MDI\\image\\";
-     //   String[] inChatIp;
-      //  int inChat = 0;
+        //   String[] inChatIp;
+        //  int inChat = 0;
         private const int udpPort = 12345;
         private const int tcpPort = 23456;
         public FormUser()
         {
             InitializeComponent();
-         //   this.WindowState = FormWindowState.Maximized;
-           
+            //   this.WindowState = FormWindowState.Maximized;
+
             salary[0] = textBox1;
             salary[1] = textBox2;
             salary[2] = textBox3;
@@ -55,13 +56,17 @@ namespace MDI
                 SqlDataReader reader1 = cmd.ExecuteReader();
                 while (reader1.Read())
                 {
-                    for (int i = 0; i < 12; i++) salary[i].Text = ((int)reader1[i+1]).ToString();
+                    for (int i = 0; i < 12; i++)
+                    {
+                        sal[i] = (int)reader1[i + 1];
+                        salary[i].Text = sal[i].ToString();
+                    }
                 }
                 reader1.Close();
 
                 sql = "select * from users where username='" + FormMain.username + "';";
                 cmd = new SqlCommand(sql, conn);
-                
+
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -75,11 +80,52 @@ namespace MDI
                 conn.Close();
             }
 
+            Thread thSal = new Thread(Salary_Chage);
+            thSal.IsBackground = true;
+            thSal.Start();
+
             RefreshChatList();
 
             Thread listener = new Thread(StartListening);
             listener.IsBackground = true;
             listener.Start();
+        }
+
+        private void Salary_Chage()
+        {
+            while (true) {
+                bool dataChanged = false;
+                String sql = "select * from salary where username='" + FormMain.username + "';";
+                using (SqlConnection conn = new SqlConnection())
+                {
+                    conn.ConnectionString = myConnectionString;
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int i = 0; i < 12; i++)
+                            if (sal[i] != ((int)reader[i + 1])) {
+                               // MessageBox.Show("Here");
+                                dataChanged = true;
+                                sal[i] = ((int)reader[i + 1]);
+                                salary[i].Text = ((int)reader[i + 1]).ToString();
+                            }
+
+                    }
+                    reader.Close();
+                }
+                if (dataChanged) {
+                    this.Invoke((MethodInvoker)(() => {
+                     //   MessageBox.Show("Here");
+                        Invalidate();
+                        Update();
+                        Refresh();
+                    }));
+                   
+                }
+                Thread.Sleep(500);
+            }
         }
 
         private void StartListening() {
@@ -108,7 +154,7 @@ namespace MDI
 
         private void sendBroadcast(object sender, EventArgs e) {
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            IPAddress broadcast = IPAddress.Parse("192.168.1.255");
+            IPAddress broadcast = IPAddress.Parse("192.168.10.255");
             byte[] sendbuf = Encoding.ASCII.GetBytes("HiChat");
             IPEndPoint ep = new IPEndPoint(broadcast, udpPort);
             s.SendTo(sendbuf, ep);
@@ -142,6 +188,15 @@ namespace MDI
                         if ( received == "HiChat")
                         {
                             //MessageBox.Show("Here");
+                            bool reply = true;
+                            foreach (Label l in flowLayoutPanel2.Controls) {
+                                string[] str = l.Text.Split(':');
+                                if (groupEP.Address.ToString() == str[1]) {
+                                    reply = false;
+                                    break;
+                                }
+                            }
+                            if (reply == false) continue;
                             Socket soc = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                             byte[] msg = Encoding.ASCII.GetBytes(FormMain.username);
                             soc.SendTo(msg, new IPEndPoint(groupEP.Address, udpPort));
@@ -242,9 +297,6 @@ namespace MDI
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
-            Invalidate();
-            Update();
-            Refresh();
         }
 
         private void picture_Paint(object sender, PaintEventArgs e)
